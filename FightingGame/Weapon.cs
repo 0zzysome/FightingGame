@@ -7,6 +7,7 @@ public class Weapon
     public Weapon()
     {
         Generator = new Random();
+        
     }
 
     public int GetDamage()
@@ -14,3 +15,4 @@ public class Weapon
         return Generator.Next(5, 20);
     }
 }
+

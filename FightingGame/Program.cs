@@ -7,7 +7,7 @@ f2.name = "bandit";
 f1.weapon = new Weapon();
 f2.weapon = new Weapon();
 f1.weapon.name = "sword";
-f1.weapon.name = "dagger";
+f2.weapon.name = "dagger";
 Console.WriteLine("Hello, World!");
 
 
@@ -30,9 +30,12 @@ if(f1.hp == 0 && f2.hp == 0)
 }
 else if(f1.hp == 0)
 {
-    Console.WriteLine($"{p1.}"); 
+    Console.WriteLine($"{f2.name} wins!"); 
 }
-
+else
+{
+    Console.WriteLine($"{f1.name} wins!"); 
+}
 
 Console.WriteLine("Tryck på enter för att fortsätta.");
 Console.ReadLine();
