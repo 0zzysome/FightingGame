@@ -1,9 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+
 Fighter f1 = new Fighter();
+
 Fighter f2 = new Fighter();
-f1.name = "soldier";
-f2.name = "bandit";
+
 f1.weapon = new Weapon();
 f2.weapon = new Weapon();
 f1.weapon.name = "sword";
