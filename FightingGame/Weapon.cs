@@ -9,13 +9,13 @@ public class Weapon
     public Weapon()
     {
         Generator = new Random();
-
+        
     }
     // ser om slaget träffar (inte klar)
-    public bool DoesHit(double HitChance)
+    public bool DoesHit(double DodgeChance)
     {
         double roll = Generator.NextDouble();
-        if(roll >= HitChance)
+        if(roll >= DodgeChance)
         {
             return true;
         }
