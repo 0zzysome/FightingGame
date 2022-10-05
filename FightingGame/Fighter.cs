@@ -15,8 +15,6 @@ public class Fighter
     public double CritDmg;
     public double HealMult;
     public bool HasHealed= false;
-    private bool MadeChar = false;
-
     public Weapon weapon;
     
     public Fighter()
