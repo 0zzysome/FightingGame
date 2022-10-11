@@ -2,17 +2,17 @@
 
 
 
-Fighter f1 = new Fighter();
-f1.weapon = new Weapon();
-CreateChar(f1);
-Fighter f2 = new Fighter();
-f2.weapon = new Weapon();
+Fighter f1 = Fighter.MakeCharacter();
+
+
+
+Fighter f2 = Fighter.MakeCharacter();
 
 
 
 
 
-while(f1.hp > 0 && f2.hp > 0)
+while(f1.Hp > 0 && f2.Hp > 0)
 {
     Console.WriteLine($"Hello, World!");
     turn(f1, f2);
@@ -26,11 +26,11 @@ while(f1.hp > 0 && f2.hp > 0)
     Console.ReadLine();
 
 }
-if(f1.hp == 0 && f2.hp == 0)
+if(f1.Hp == 0 && f2.Hp == 0)
 {
     Console.WriteLine("Oavgort!");
 }
-else if(f1.hp == 0)
+else if(f1.Hp == 0)
 {
     Console.WriteLine($"{f2.name} wins!"); 
 }
@@ -98,93 +98,3 @@ void turn(Fighter Player, Fighter target)
 
         }
     }
-void CreateChar(Fighter Player)
-    {
-        bool MadeChar = false;
-        int Choice = 0;
-        //spelaren väljer namn på karatär
-        Console.WriteLine("Choose a name for your fighter."); 
-        Player.name = Console.ReadLine();
-        // ser om skapandet av karaktären gick igenom
-        while (MadeChar==false)
-        {
-            Console.Clear();
-            // spelaren väljer klass
-            Console.WriteLine("Choose a class for your fighter.");
-            Console.WriteLine("1. Rouge");
-            Console.WriteLine("2. Soldier");
-            Console.WriteLine("3. Class info");
-            
-            MadeChar =int.TryParse(Console.ReadLine(), out Choice);
-            // Ändrar på alla variabler så de matchar klassen
-            //
-            switch(Choice)
-            {
-                case 1:
-                    
-                    Player = new Rouge(); 
-                    break;
-                case 2: 
-                    
-                    Player = new Soldier();
-                    break;
-                case 3:
-                    ClassInfo();
-                    MadeChar = false;
-                    break;
-                default:
-                    MadeChar = false;
-                    break;
-
-            }
-        }
-    }
-void ClassInfo()
-{   
-    bool IsDone = false; 
-    int Choice = 0;
-    while(IsDone==false)
-    {
-        Console.Clear();
-        Console.WriteLine("What class do you whant info about.");
-        Console.WriteLine("1. Rouge");
-        Console.WriteLine("2. Soldier");
-        //läser in vad splarens skriver in 
-        IsDone =int.TryParse(Console.ReadLine(), out Choice);
-        //Isdone = true
-        switch(Choice)
-        {
-            case 1:
-                Console.WriteLine("Class: Rouge");
-                Console.WriteLine("Max HP: ");
-                Console.WriteLine("Strength : ");
-                Console.WriteLine("Defence: ");
-                Console.WriteLine("Dodge Chance: ");
-                Console.WriteLine("Crit chance: ");
-                Console.WriteLine("Crit damage multiplier: ");
-                Console.WriteLine("Press enter to continue.");
-                Console.ReadLine();
-                
-                break;
-            case 2:
-                Console.WriteLine("Class: Rouge");
-                Console.WriteLine("Max HP: ");
-                Console.WriteLine("Strength : ");
-                Console.WriteLine("Defence: ");
-                Console.WriteLine("Dodge Chance: ");
-                Console.WriteLine("Crit chance: ");
-                Console.WriteLine("Crit damage multiplier: ");
-                Console.WriteLine("Press enter to continue.");
-                Console.ReadLine();
-                
-                break;
-            default:
-                IsDone = false;
-
-                break;
-        }
-        
-    }
-        
-
-}
