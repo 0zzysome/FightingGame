@@ -14,36 +14,51 @@ Fighter f2 = Fighter.MakeCharacter();
 
 while(f1.Hp > 0 && f2.Hp > 0)
 {
-    Console.WriteLine($"Hello, World!");
-    turn(f1, f2);
-    
-    Console.WriteLine($"Hello, World!");
-    
-    
-
-
-    Console.WriteLine("Tryck på enter för att fortsätta.");
+    int orderF1 = turn(f1, f2);
+    Console.WriteLine("Press enter to continue.");
     Console.ReadLine();
+
+    
+
+    int orderF2 = turn(f2, f1);
+    Console.WriteLine("Press enter to continue.");
+    Console.ReadLine();
+    
+    if(orderF1>orderF2)
+    {
+        combat(orderF1,f1,f2);
+        combat(orderF2,f2,f1);
+    }
+    else
+    {
+        combat(orderF2,f2,f1);
+        combat(orderF1,f1,f2);
+    }
+    ResetStats(orderF1, f1);
+    ResetStats(orderF2, f2);
 
 }
 if(f1.Hp == 0 && f2.Hp == 0)
 {
-    Console.WriteLine("Oavgort!");
+    Console.WriteLine("Tie!");
+    Console.ReadLine();
 }
 else if(f1.Hp == 0)
 {
     Console.WriteLine($"{f2.name} wins!"); 
+    Console.ReadLine();
 }
 else
 {
     Console.WriteLine($"{f1.name} wins!"); 
+    Console.ReadLine();
 }
 
-Console.WriteLine("Tryck på enter för att fortsätta.");
+Console.WriteLine("Press enter to continue.");
 Console.ReadLine();
 
-
-void turn(Fighter Player, Fighter target)
+//Här så gör splaren ett val som skrivs ut  så det kan användas senare
+int turn(Fighter Player, Fighter target)
     {
         bool ChoseAction = false;
         int ActionNumber = 0;
@@ -64,37 +79,55 @@ void turn(Fighter Player, Fighter target)
             }
             ChoseAction = int.TryParse(Console.ReadLine(), out ActionNumber);
             // hanterar vad karaktären gör
-            switch(ActionNumber)
+            if(Player.HasHealed || ActionNumber<1 ||ActionNumber>4)
             {
-                case 1:
-                    Player.Hit(target);
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
-
-                    break;
-
-                case 4:
-                    if(Player.HasHealed==false)
-                    {
-                        Player.Heal();
-                        Console.WriteLine($"{Player.name} Healed a total of {Player.HealMult*10} Hp.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"4.{Player.name} cant heal any more."); 
-                        ChoseAction = false;         
-                    }
-                    break;
-                default:
-                    ChoseAction = false;
-                    break;
-
-
+                ChoseAction = false;
+                Console.WriteLine("No choice was made, Press enter to go back and make a choice.");
+                Console.ReadLine();
             }
-
-
         }
+        return ActionNumber;
     }
+//metod för vad som händer först så man kan blokera inan motstondaren slår.
+void combat(int Event,Fighter Player,Fighter target )
+{
+    switch(Event)
+    {
+            case 1:
+                Player.Hit(target);
+                break;
+            case 2:
+                Player.Dodge =+ 0.3;
+                break;
+            case 3:
+                Player.Def =+ 0.3;
+                break;
+            case 4:
+                if(Player.HasHealed==false)
+                {
+                    Player.Heal();
+                    Console.WriteLine($"{Player.name} Healed a total of {Player.HealMult*10} Hp.");
+                }
+                else
+                {
+                    Console.WriteLine($"4.{Player.name} cant heal any more.");               
+                }
+                break;
+            default:
+                Console.WriteLine($"ERROR: NO CHOICE WAS MADE");
+                break;
+    }        
+}
+// säter tilbaks alla variabler så att de inte stanar
+void ResetStats(int Event,Fighter Player)
+{
+    if(Event==2)
+    {
+        Player.Dodge =- 0.3;
+    }
+    else if(Event==3)
+    {
+        Player.Def =- 0.3;
+    }
+    
+}   

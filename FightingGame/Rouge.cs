@@ -13,7 +13,7 @@ public class Rouge : Fighter
         Def = 0.1;
         Dodge = 0.3;
         CritChance = 0.25;
-        CritDmg = 2;
+        CritDmg = 2.5;
         HealMult = 2;
         weapon.name = "knife";
         HasHealed = false;

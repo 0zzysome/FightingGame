@@ -7,10 +7,12 @@ public class Fighter
     public string ClassName {get; set;}
     public string name {get; set;}
     public double MaxHp{get; set;}
+
+    private double hp;
     public double Hp
     {
-        get => Hp;
-        set => Math.Max(value, 0);
+        get => hp;
+        set => hp = Math.Max(value, 0);
     }
     public int Str{get; set;}
     public double Dodge{get; set;}
@@ -23,6 +25,7 @@ public class Fighter
     
     public static Fighter MakeCharacter()
     {
+        Console.Clear();
         bool MadeChar = false;
         int Choice = 0;
         //spelaren väljer namn på karatär
@@ -44,13 +47,10 @@ public class Fighter
             switch (Choice)
             {
                 case 1:
-
                     f  = new Rouge();
                     f.name = name;
                     return f;
-
                  case 2:
-
                     f = new Soldier();
                     f.name = name;
                     break;
@@ -61,19 +61,11 @@ public class Fighter
                  default:
                      MadeChar = false;
                      break;
-
             }
         }
+        Console.WriteLine($"Created character named {name}. Press enter to continue.");
+
         return null;
-    }
-
-
-    public Fighter()
-    {
-
-
-
-
     }
     //healing
     public void Heal()
@@ -83,10 +75,11 @@ public class Fighter
             Hp = Hp + (10 * HealMult);
             Hp = Math.Min(MaxHp, Hp);
             HasHealed = true;
-
         }
-
-
+        else 
+        {
+            Console.WriteLine("CANT HEAL!");
+        }
     }
     public void Hit(Fighter target)
     {
@@ -117,7 +110,7 @@ public class Fighter
         }
         else
         {
-            
+            Console.WriteLine($"{name} missed {target.name} and did 0 damage!");
         }
     }
 
@@ -142,8 +135,9 @@ public class Fighter
                 Console.WriteLine("Strength : 8");
                 Console.WriteLine("Defence: 10%");
                 Console.WriteLine("Dodge Chance: 30%");
-                Console.WriteLine("Crit chance: 25%");
-                Console.WriteLine("Crit damage multiplier: ");
+                Console.WriteLine("Crit chance: 40%");
+                Console.WriteLine("Crit damage multiplier: 2.5");
+                Console.WriteLine("Weapon: knife");
                 Console.WriteLine("Press enter to continue.");
                 Console.ReadLine();
                 
@@ -155,7 +149,8 @@ public class Fighter
                 Console.WriteLine("Defence: 30%");
                 Console.WriteLine("Dodge Chance: 10%");
                 Console.WriteLine("Crit chance: 5%");
-                Console.WriteLine("Crit damage multiplier: ");
+                Console.WriteLine("Crit damage multiplier: 2");
+                Console.WriteLine("Weapon: sword");
                 Console.WriteLine("Press enter to continue.");
                 Console.ReadLine();
                 
