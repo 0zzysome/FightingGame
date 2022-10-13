@@ -23,7 +23,8 @@ while(f1.Hp > 0 && f2.Hp > 0)
     int orderF2 = turn(f2, f1);
     Console.WriteLine("Press enter to continue.");
     Console.ReadLine();
-    
+    Console.Clear();
+    Console.WriteLine("COMBAT BEGINS");
     if(orderF1>orderF2)
     {
         combat(orderF1,f1,f2);
@@ -34,6 +35,10 @@ while(f1.Hp > 0 && f2.Hp > 0)
         combat(orderF2,f2,f1);
         combat(orderF1,f1,f2);
     }
+    PrintHp(f1);
+    PrintHp(f2);
+    Console.WriteLine("Press enter to continue.");
+    Console.ReadLine();
     ResetStats(orderF1, f1);
     ResetStats(orderF2, f2);
 
@@ -98,9 +103,11 @@ void combat(int Event,Fighter Player,Fighter target )
                 break;
             case 2:
                 Player.Dodge =+ 0.3;
+                Console.WriteLine($"{Player.name} tried to dodge");
                 break;
             case 3:
                 Player.Def =+ 0.3;
+                Console.WriteLine($"{Player.name} whent to block the next attack");
                 break;
             case 4:
                 if(Player.HasHealed==false)
@@ -131,3 +138,8 @@ void ResetStats(int Event,Fighter Player)
     }
     
 }   
+void PrintHp(Fighter Player)
+{
+    Console.WriteLine($"{Player.name} HP: {Player.Hp}/{Player.MaxHp}");
+    Console.WriteLine($"{Player.Hp}/{Player.MaxHp}");
+}
