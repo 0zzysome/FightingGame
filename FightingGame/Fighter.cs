@@ -53,7 +53,8 @@ public class Fighter
                  case 2:
                     f = new Soldier();
                     f.name = name;
-                    break;
+                    return f;
+                    
                  case 3:
                      ClassInfo();
                      MadeChar = false;
@@ -97,11 +98,11 @@ public class Fighter
             if (weapon.DoesCrit(CritChance))
             {
                 Console.WriteLine("Critical Hit!");
-                damage = damage * Str * (1 - Def) * CritDmg;
+                damage = damage * Str * (1 - Def) * CritDmg/5;
             }
             else
             {
-                damage = damage * Str * (1 - Def);
+                damage = damage * Str * (1 - Def)/5;
             }
 
             target.Hp -= damage;
