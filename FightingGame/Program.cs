@@ -84,7 +84,7 @@ int turn(Fighter Player, Fighter target)
             }
             ChoseAction = int.TryParse(Console.ReadLine(), out ActionNumber);
             // hanterar vad karaktären gör
-            if(Player.HasHealed || ActionNumber<1 ||ActionNumber>4)
+            if(Player.HasHealed && ActionNumber == 4)
             {
                 ChoseAction = false;
                 Console.WriteLine("No choice was made, Press enter to go back and make a choice.");
@@ -141,5 +141,5 @@ void ResetStats(int Event,Fighter Player)
 void PrintHp(Fighter Player)
 {
     Console.WriteLine($"{Player.name} HP: {Player.Hp}/{Player.MaxHp}");
-    Console.WriteLine($"{Player.Hp}/{Player.MaxHp}");
+    
 }

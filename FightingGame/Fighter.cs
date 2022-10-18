@@ -104,10 +104,11 @@ public class Fighter
             {
                 damage = damage * Str * (1 - Def)/5;
             }
+            int RoundDmg = (int)damage;
 
-            target.Hp -= damage;
-        
-            Console.WriteLine($"{name} hit {target.name} and did {damage} damage.");
+            target.Hp -= RoundDmg;
+    
+            Console.WriteLine($"{name} hit {target.name} and did {RoundDmg} damage.");
         }
         else
         {
