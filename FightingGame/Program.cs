@@ -14,13 +14,13 @@ Fighter f2 = Fighter.MakeCharacter();
 
 while(f1.Hp > 0 && f2.Hp > 0)
 {
-    int orderF1 = turn(f1, f2);
+    int orderF1 = turn(f1);
     Console.WriteLine("Press enter to continue.");
     Console.ReadLine();
 
     
 
-    int orderF2 = turn(f2, f1);
+    int orderF2 = turn(f2);
     Console.WriteLine("Press enter to continue.");
     Console.ReadLine();
     Console.Clear();
@@ -63,7 +63,7 @@ Console.WriteLine("Press enter to continue.");
 Console.ReadLine();
 
 //Här så gör splaren ett val som skrivs ut  så det kan användas senare
-int turn(Fighter Player, Fighter target)
+int turn(Fighter Player)
     {
         bool ChoseAction = false;
         int ActionNumber = 0;
