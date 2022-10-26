@@ -82,7 +82,7 @@ public class Fighter
             Console.WriteLine("CANT HEAL!");
         }
     }
-    public void Hit(Fighter target)
+    public void Hit(bool isRouge, Fighter target)
     {
         
         
@@ -98,15 +98,25 @@ public class Fighter
             if (weapon.DoesCrit(CritChance))
             {
                 Console.WriteLine("Critical Hit!");
-                damage = damage * Str * (1 - Def) * CritDmg/5;
+                damage = damage * Str * (1 - Def) * CritDmg/4;
             }
             else
             {
-                damage = damage * Str * (1 - Def)/5;
+                damage = damage * Str * (1 - Def)/4;
             }
-            int RoundDmg = (int)damage;
 
-            target.Hp -= RoundDmg;
+            int RoundDmg = (int)damage;
+            if(isRouge)
+            {
+                RoundDmg -= 2;
+                target.Hp -= RoundDmg; 
+            }
+            else
+            {
+                RoundDmg += 4;
+                target.Hp -= RoundDmg;  
+            }
+            
     
             Console.WriteLine($"{name} hit {target.name} and did {RoundDmg} damage.");
         }
@@ -134,12 +144,13 @@ public class Fighter
             case 1:
                 Console.WriteLine("Class: Rouge");
                 Console.WriteLine("Max HP: 80");
-                Console.WriteLine("Strength : 8");
+                Console.WriteLine("Strength : 7");
                 Console.WriteLine("Defence: 10%");
                 Console.WriteLine("Dodge Chance: 30%");
-                Console.WriteLine("Crit chance: 40%");
-                Console.WriteLine("Crit damage multiplier: 2.5");
+                Console.WriteLine("Crit chance: 25%");
+                Console.WriteLine("Crit damage multiplier: 2");
                 Console.WriteLine("Weapon: knife");
+                Console.WriteLine("Can attack 2 times and has more crit chance");
                 Console.WriteLine("Press enter to continue.");
                 Console.ReadLine();
                 
@@ -153,6 +164,7 @@ public class Fighter
                 Console.WriteLine("Crit chance: 5%");
                 Console.WriteLine("Crit damage multiplier: 2");
                 Console.WriteLine("Weapon: sword");
+                Console.WriteLine("Does more damage and has more block");
                 Console.WriteLine("Press enter to continue.");
                 Console.ReadLine();
                 

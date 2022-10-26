@@ -14,7 +14,7 @@ public class Soldier: Fighter
         Dodge = 0.1;
         CritChance = 0.05;
         CritDmg = 2;
-        HealMult = 2;
+        HealMult = 2.5;
         weapon.name = "Sword";
         HasHealed = false;
     }

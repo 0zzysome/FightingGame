@@ -2,6 +2,8 @@
 
 
 
+Console.WriteLine("Press enter to start.");
+Console.ReadLine();
 Fighter f1 = Fighter.MakeCharacter();
 
 
@@ -59,8 +61,6 @@ else
     Console.ReadLine();
 }
 
-Console.WriteLine("Press enter to continue.");
-Console.ReadLine();
 
 //Här så gör splaren ett val som skrivs ut  så det kan användas senare
 int turn(Fighter Player)
@@ -99,7 +99,17 @@ void combat(int Event,Fighter Player,Fighter target )
     switch(Event)
     {
             case 1:
-                Player.Hit(target);
+                if(Player.weapon.name=="knife")
+                {
+                    Player.Hit(true,target); 
+                    Player.Hit(true,target); 
+                }
+                else
+                {
+                    Player.Hit(false,target); 
+                }
+                
+
                 break;
             case 2:
                 Player.Dodge =+ 0.3;
